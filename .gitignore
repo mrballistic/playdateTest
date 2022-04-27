@@ -5,6 +5,7 @@ luac.out
 *.src.rock
 *.zip
 *.tar.gz
+bin/*
 
 # Object files
 *.o
@@ -38,4 +39,7 @@ luac.out
 *.i*86
 *.x86_64
 *.hex
+
+# Mac stuff
+.DS_Store
 
