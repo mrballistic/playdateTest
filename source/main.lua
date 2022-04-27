@@ -8,17 +8,11 @@ local thisX = 100
 local thisY = 100
 local flip = false
 
-local myText = ""
-
 local image = playdate.graphics.image.new("img/coin.png")
 local sprite = playdate.graphics.sprite.new(image)
 
 sprite:moveTo(100, 100)
 sprite:add()
-
-
-
-
 
 function playdate.update() 
     gfx.clear()
@@ -27,6 +21,7 @@ function playdate.update()
     sprite:moveTo(thisX,thisY)
     sprite:update()
 
+    -- get the button actions/update the xy coord of the sprite
     if(playdate.buttonIsPressed(playdate.kButtonRight)) 
     then
         thisX += 10
@@ -47,18 +42,11 @@ function playdate.update()
         thisY += 10
     end
 
+   -- get the crank position, update the y pos of the sprite 
    local degrees = playdate.getCrankChange();
-
-  -- playdate.graphics.drawText(degrees, 100, 150)
-
-
    thisY += degrees
 
-    -- sprite:image.drawScaled(thisX, thisY, degrees)
-
-
-
-
+   -- hacky way to keep the sprite on the screen
     if(thisX<16)
     then   
         thisX = 16
@@ -68,7 +56,6 @@ function playdate.update()
     then   
         thisX = 384
     end
-
 
     if(thisY<16)
     then   
