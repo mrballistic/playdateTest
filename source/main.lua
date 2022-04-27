@@ -4,12 +4,18 @@ import "CoreLibs/crank"
 
 local gfx <const> = playdate.graphics
 
+local kScreenBoundsWidth <const> = 400
+local kScreenBoundsHeight <const> = 240
+
 local thisX = 100
 local thisY = 100
 local flip = false
 
+local spriteSpeed = 10
+
 local image = playdate.graphics.image.new("img/coin.png")
 local sprite = playdate.graphics.sprite.new(image)
+local spritewidth = sprite.width/2
 
 sprite:moveTo(100, 100)
 sprite:add()
@@ -24,22 +30,22 @@ function playdate.update()
     -- get the button actions/update the xy coord of the sprite
     if(playdate.buttonIsPressed(playdate.kButtonRight)) 
     then
-        thisX += 10
+        thisX += spriteSpeed
     end
 
     if(playdate.buttonIsPressed(playdate.kButtonLeft)) 
     then
-        thisX -= 10
+        thisX -= spriteSpeed
     end
 
     if(playdate.buttonIsPressed(playdate.kButtonUp)) 
     then
-        thisY -= 10
+        thisY -= spriteSpeed
     end
 
     if(playdate.buttonIsPressed(playdate.kButtonDown)) 
     then
-        thisY += 10
+        thisY += spriteSpeed
     end
 
    -- get the crank position, update the y pos of the sprite 
@@ -47,24 +53,24 @@ function playdate.update()
    thisY += degrees
 
    -- hacky way to keep the sprite on the screen
-    if(thisX<16)
+    if(thisX<spritewidth)
     then   
-        thisX = 16
+        thisX = spritewidth
     end
 
-    if(thisX>384)
+    if(thisX>kScreenBoundsWidth - spritewidth)
     then   
-        thisX = 384
+        thisX = kScreenBoundsWidth - spritewidth
     end
 
-    if(thisY<16)
+    if(thisY<spritewidth)
     then   
-        thisY = 16
+        thisY = spritewidth
     end
 
-    if(thisY>224)
+    if(thisY>kScreenBoundsHeight - spritewidth)
     then   
-        thisY = 224
+        thisY = kScreenBoundsHeight - spritewidth
     end
 
 
