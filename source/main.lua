@@ -49,8 +49,8 @@ function playdate.update()
     end
 
    -- get the crank position, update the y pos of the sprite 
-   local degrees = playdate.getCrankChange();
-   thisY += degrees
+   local deltaCrank = playdate.getCrankChange();
+   thisY += deltaCrank
 
    -- hacky way to keep the sprite on the screen
     if(thisX<spritewidth)
