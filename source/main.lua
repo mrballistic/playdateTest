@@ -41,20 +41,7 @@ function flipSprite()
     end
 end
 
-function playdate.update() 
-    gfx.clear()
-    playdate.drawFPS()
-
-    sprite:moveTo(thisX,thisY)
-    sprite:update()
-
-    -- look for collisions
-    local collisions = gfx.sprite.allOverlappingSprites()
-
-    if #collisions > 0
-    then   
-        flipSprite()
-    end
+function checkInput()
 
     -- get the button actions/update the xy coord of the sprite
     if(playdate.buttonIsPressed(playdate.kButtonRight)) 
@@ -86,6 +73,26 @@ function playdate.update()
     -- get the crank position, update the y pos of the sprite 
     local deltaCrank = playdate.getCrankChange();
     thisY += deltaCrank
+
+end
+
+
+function playdate.update() 
+    gfx.clear()
+    playdate.drawFPS()
+
+    sprite:moveTo(thisX,thisY)
+    sprite:update()
+
+    checkInput()
+    
+    -- look for collisions
+    local collisions = gfx.sprite.allOverlappingSprites()
+
+    if #collisions > 0
+    then   
+        flipSprite()
+    end
 
     -- hacky way to keep the sprite on the screen
     if(thisX<spritewidth)
