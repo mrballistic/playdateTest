@@ -15,6 +15,9 @@ local spriteSpeed = 10
 
 local images = {"img/coin.png", "img/coin-reverse.png"}
 
+local wallImage = playdate.graphics.image.new("img/wall.png")
+local rightWall = playdate.graphics.sprite.new(wallImage)
+
 local image = playdate.graphics.image.new(images[1])
 local image2 = playdate.graphics.image.new(images[2])
 local coin = playdate.graphics.sprite.new(image)
@@ -22,11 +25,14 @@ local coinwidth = coin.width/2
 
 -- set collision detection on the sprite
 coin:setCollideRect( 0, 0, coin:getSize() )
+rightWall:setCollideRect( 0, 0, rightWall:getSize() )
 
 -- put it on the stage...
 coin:moveTo(100, 100)
+rightWall:moveTo(380,120)
 
 -- ... literally
+rightWall:add()
 coin:add()
 
 -- change the sprite out
