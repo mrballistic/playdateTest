@@ -17,6 +17,7 @@ local images = {"img/coin.png", "img/coin-reverse.png"}
 
 local wallImage = playdate.graphics.image.new("img/wall.png")
 local rightWall = playdate.graphics.sprite.new(wallImage)
+local leftWall = playdate.graphics.sprite.new(wallImage)
 
 local image = playdate.graphics.image.new(images[1])
 local image2 = playdate.graphics.image.new(images[2])
@@ -26,13 +27,17 @@ local coinwidth = coin.width/2
 -- set collision detection on the sprite
 coin:setCollideRect( 0, 0, coin:getSize() )
 rightWall:setCollideRect( 0, 0, rightWall:getSize() )
+leftWall:setCollideRect( 0, 0, rightWall:getSize() )
 
 -- put it on the stage...
 coin:moveTo(100, 100)
 rightWall:moveTo(380,120)
+leftWall:moveTo(22,120)
+leftWall:setRotation(180)
 
 -- ... literally
 rightWall:add()
+leftWall:add()
 coin:add()
 
 -- change the sprite out
@@ -75,9 +80,9 @@ function checkInput()
         flipSprite()
     end
 
-    -- get the crank position, update the y pos of the sprite 
+    -- get the crank position, and rotate the sprite
     local deltaCrank = playdate.getCrankChange();
-    thisY += deltaCrank
+    coin:setRotation(coin:getRotation() + deltaCrank)
 
 end
 
