@@ -29,6 +29,18 @@ sprite:moveTo(100, 100)
 -- ... literally
 sprite:add()
 
+-- change the sprite out
+function flipSprite()
+    if(flip)
+    then
+        sprite:setImage(image)
+        flip=false
+    else
+        sprite:setImage(image2)
+        flip=true
+    end
+end
+
 function playdate.update() 
     gfx.clear()
     playdate.drawFPS()
@@ -39,10 +51,10 @@ function playdate.update()
     -- look for collisions
     local collisions = gfx.sprite.allOverlappingSprites()
 
-  --  if collisions.length > 0
-  --  then   
-
-  --  end
+    if #collisions > 0
+    then   
+        flipSprite()
+    end
 
     -- get the button actions/update the xy coord of the sprite
     if(playdate.buttonIsPressed(playdate.kButtonRight)) 
@@ -68,14 +80,7 @@ function playdate.update()
     -- invert the image when the "A" button is pressed
     if(playdate.buttonJustPressed(playdate.kButtonA))
     then
-        if(flip)
-        then
-            sprite:setImage(image)
-            flip=false
-        else
-            sprite:setImage(image2)
-            flip=true
-        end
+        flipSprite()
     end
 
     -- get the crank position, update the y pos of the sprite 
