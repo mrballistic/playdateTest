@@ -17,33 +17,32 @@ local images = {"img/coin.png", "img/coin-reverse.png"}
 
 local image = playdate.graphics.image.new(images[1])
 local image2 = playdate.graphics.image.new(images[2])
-local sprite = playdate.graphics.sprite.new(image)
-local spritewidth = sprite.width/2
+local coin = playdate.graphics.sprite.new(image)
+local coinwidth = coin.width/2
 
 -- set collision detection on the sprite
-sprite:setCollideRect( 0, 0, sprite:getSize() )
+coin:setCollideRect( 0, 0, coin:getSize() )
 
 -- put it on the stage...
-sprite:moveTo(100, 100)
+coin:moveTo(100, 100)
 
 -- ... literally
-sprite:add()
+coin:add()
 
 -- change the sprite out
 function flipSprite()
     if(flip)
     then
-        sprite:setImage(image)
+        coin:setImage(image)
         flip=false
     else
-        sprite:setImage(image2)
+        coin:setImage(image2)
         flip=true
     end
 end
 
+-- get the button actions/update the xy coord of the sprite
 function checkInput()
-
-    -- get the button actions/update the xy coord of the sprite
     if(playdate.buttonIsPressed(playdate.kButtonRight)) 
     then
         thisX += spriteSpeed
@@ -81,8 +80,8 @@ function playdate.update()
     gfx.clear()
     playdate.drawFPS()
 
-    sprite:moveTo(thisX,thisY)
-    sprite:update()
+    coin:moveTo(thisX,thisY)
+    coin:update()
 
     checkInput()
     
@@ -95,24 +94,24 @@ function playdate.update()
     end
 
     -- hacky way to keep the sprite on the screen
-    if(thisX<spritewidth)
+    if(thisX<coinwidth)
     then   
-        thisX = spritewidth
+        thisX = coinwidth
     end
 
-    if(thisX>kScreenBoundsWidth - spritewidth)
+    if(thisX>kScreenBoundsWidth - coinwidth)
     then   
-        thisX = kScreenBoundsWidth - spritewidth
+        thisX = kScreenBoundsWidth - coinwidth
     end
 
-    if(thisY<spritewidth)
+    if(thisY<coinwidth)
     then   
-        thisY = spritewidth
+        thisY = coinwidth
     end
 
-    if(thisY>kScreenBoundsHeight - spritewidth)
+    if(thisY>kScreenBoundsHeight - coinwidth)
     then   
-        thisY = kScreenBoundsHeight - spritewidth
+        thisY = kScreenBoundsHeight - coinwidth
     end
 
 end
