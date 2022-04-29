@@ -1,8 +1,11 @@
 import "CoreLibs/graphics"
 import "CoreLibs/sprites"
 import "CoreLibs/crank"
+import "CoreLibs/object"
 
 local gfx <const> = playdate.graphics
+
+import "Coin.lua"
 
 local kScreenBoundsWidth <const> = 400
 local kScreenBoundsHeight <const> = 240

@@ -1,4 +1,12 @@
-Coin = Class{}
+import "CoreLibs/graphics"
+import "CoreLibs/sprites"
+import "CoreLibs/crank"
+import "CoreLibs/object"
+
+local gfx <const> = playdate.graphics
+local function emptyFunc()end
+
+class("Coin").extends(gfx.sprite)
 
 function Coin:init(x, y, img1, img2)
     self.x = x
