@@ -2,7 +2,7 @@
 
 Learn from my fails :) 
 
-Slowly working my way up to building a viable game on the playdate.
+Slowly working my way up to building a viable game on the playdate, and learning Lua along the way. 
 
 ## Requirements
 - [VS Code](https://code.visualstudio.com)
