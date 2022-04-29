@@ -5,9 +5,12 @@ import "CoreLibs/object"
 
 local gfx <const> = playdate.graphics
 
+-- set up the random seed
+math.randomseed(playdate.getSecondsSinceEpoch())
+
 -- i bet that there's a constant in the playdate sdk that would do this for me...
-local kScreenBoundsWidth <const> = 400
-local kScreenBoundsHeight <const> = 240
+local kScreenBoundsWidth <const> = playdate.display.getWidth()
+local kScreenBoundsHeight <const>  = playdate.display.getHeight()
 
 -- bring in the coin class
 import "Coin.lua"
@@ -29,6 +32,9 @@ local image2 = playdate.graphics.image.new(images[2])
 local coin = playdate.graphics.sprite.new(image)
 local coinwidth = coin.width/2
 
+local secondCoin = Coin:init(150, 150, 32, 32, images[1], images[2], true)
+
+
 -- set collision detection on the sprite
 coin:setCollideRect( 0, 0, coin:getSize() )
 rightWall:setCollideRect( 0, 0, rightWall:getSize() )
@@ -36,6 +42,7 @@ leftWall:setCollideRect( 0, 0, rightWall:getSize() )
 
 -- put it on the stage...
 coin:moveTo(100, 100)
+--secondCoin:moveTo(50,50)
 rightWall:moveTo(380,120)
 leftWall:moveTo(22,120)
 leftWall:setRotation(180)
@@ -44,6 +51,7 @@ leftWall:setRotation(180)
 rightWall:add()
 leftWall:add()
 coin:add()
+
 
 -- change the sprite out
 function flipSprite()
