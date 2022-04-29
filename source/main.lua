@@ -5,10 +5,12 @@ import "CoreLibs/object"
 
 local gfx <const> = playdate.graphics
 
-import "Coin.lua"
-
+-- i bet that there's a constant in the playdate sdk that would do this for me...
 local kScreenBoundsWidth <const> = 400
 local kScreenBoundsHeight <const> = 240
+
+-- bring in the coin class
+import "Coin.lua"
 
 local thisX = 100
 local thisY = 100
