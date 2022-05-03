@@ -37,6 +37,8 @@ function Coin:init(_x, _y, _height, _width, _img1, _img2,  collide)
     self.image:add()
     self:reset()
 
+    return self
+
 end
 
 --[[
@@ -57,6 +59,10 @@ end
 
 ]]
 function Coin:update(dt)
-    self.x = self.x + self.dx * dt
-    self.y = self.y + self.dy * dt
+    self.x = self.x - self.dx * dt
+    self.y = self.y - self.dy * dt
+
+
+    self.image:moveTo(self.x, self.y)
+
 end

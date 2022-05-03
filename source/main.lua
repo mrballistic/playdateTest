@@ -5,6 +5,9 @@ import "CoreLibs/object"
 
 local gfx <const> = playdate.graphics
 
+local tick = playdate.resetElapsedTime()
+local newTick = 0
+
 -- set up the random seed
 math.randomseed(playdate.getSecondsSinceEpoch())
 
@@ -42,7 +45,6 @@ leftWall:setCollideRect( 0, 0, rightWall:getSize() )
 
 -- put it on the stage...
 coin:moveTo(100, 100)
---secondCoin:moveTo(50,50)
 rightWall:moveTo(380,120)
 leftWall:moveTo(22,120)
 leftWall:setRotation(180)
@@ -51,6 +53,8 @@ leftWall:setRotation(180)
 rightWall:add()
 leftWall:add()
 coin:add()
+
+secondCoin:update(playdate.getElapsedTime())
 
 
 -- change the sprite out
@@ -106,6 +110,8 @@ function playdate.update()
 
     coin:moveTo(thisX,thisY)
     coin:update()
+
+    secondCoin:update(playdate.getElapsedTime())
 
     checkInput()
     
