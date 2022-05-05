@@ -26,9 +26,15 @@ local spriteSpeed = 10
 
 local images = {"img/coin.png", "img/coin-reverse.png"}
 
-local wallImage = playdate.graphics.image.new("img/wall.png")
-local rightWall = playdate.graphics.sprite.new(wallImage)
-local leftWall = playdate.graphics.sprite.new(wallImage)
+local wallImageTop = playdate.graphics.image.new("img/wall-top.png")
+local wallImageBottom = playdate.graphics.image.new("img/wall-bottom.png")
+local wallImageLeft = playdate.graphics.image.new("img/wall-left.png")
+local wallImageRight = playdate.graphics.image.new("img/wall-right.png")
+local rightWall = playdate.graphics.sprite.new(wallImageRight)
+local leftWall = playdate.graphics.sprite.new(wallImageLeft)
+
+local topWall = playdate.graphics.sprite.new(wallImageTop)
+local bottomWall = playdate.graphics.sprite.new(wallImageBottom)
 
 local image = playdate.graphics.image.new(images[1])
 local image2 = playdate.graphics.image.new(images[2])
@@ -41,17 +47,26 @@ local secondCoin = Coin:init(150, 150, 32, 32, images[1], images[2], true)
 -- set collision detection on the sprite
 coin:setCollideRect( 0, 0, coin:getSize() )
 rightWall:setCollideRect( 0, 0, rightWall:getSize() )
-leftWall:setCollideRect( 0, 0, rightWall:getSize() )
+leftWall:setCollideRect( 0, 0, leftWall:getSize() )
+
+topWall:setCollideRect( 0, 0, topWall:getSize() )
+bottomWall:setCollideRect( 0, 0, bottomWall:getSize() )
 
 -- put it on the stage...
 coin:moveTo(100, 100)
-rightWall:moveTo(380,120)
-leftWall:moveTo(22,120)
-leftWall:setRotation(180)
+
+rightWall:moveTo(384,120)
+leftWall:moveTo(16,120)
+topWall:moveTo(200,12.5)
+bottomWall:moveTo(200,229)
 
 -- ... literally
 rightWall:add()
 leftWall:add()
+
+topWall:add()
+bottomWall:add()
+
 coin:add()
 
 secondCoin:update(playdate.getElapsedTime())
@@ -120,7 +135,8 @@ function playdate.update()
 
     if #collisions > 0
     then   
-        flipSprite()
+        print('collision!')
+        printTable(collisions)
     end
 
     -- hacky way to keep the sprite on the screen

@@ -62,7 +62,10 @@ function Coin:update(dt)
     self.x = self.x - self.dx * dt
     self.y = self.y - self.dy * dt
 
+  --  self.image:moveTo(self.x, self.y)
+end
 
-    self.image:moveTo(self.x, self.y)
-
+function Coin:handleCollision()
+    self.dy = self.dy * -1
+    self.dx = self.dx * -1
 end
